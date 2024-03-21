@@ -64,14 +64,28 @@ const images = [
   },
 ];
 
+const gallery = document.querySelector(".gallery")
+console.log(gallery);
+function createMarkup(data) {
+  return data.map(({ preview, original, description }) => `
+  <li class="gallery-item">
+  <a class="gallery-link" href="large-image.jpg">
+    <img
+      class="gallery-image"
+      src="${preview}"
+      data-source="${original}"
+      alt="${description}"
+    />
+  </a>
+</li>
+  `).join("");
+}
 
-// <li class="gallery-item">
-//   <a class="gallery-link" href="large-image.jpg">
-//     <img
-//       class="gallery-image"
-//       src="small-image.jpg"
-//       data-source="large-image.jpg"
-//       alt="Image description"
-//     />
-//   </a>
-// </li>
+gallery.insertAdjacentHTML("beforeend", createMarkup(images));
+gallery.addEventListener("click", handleModalOpen);
+
+
+
+
+
+
